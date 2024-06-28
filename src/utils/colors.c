@@ -1,3 +1,9 @@
+/*
+ * https://github.com/0Magenta0/insurgency-external
+ * Copyright 0Magenta0 2024
+ * MIT License
+ */
+
 #include "colors.h"
 
 #include <xcb/xcb.h>
