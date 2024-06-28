@@ -18,7 +18,7 @@ typedef struct {
 } vector2;
 
 int
-is_zero_pos(vector3 pos);
+is_vector3_zero(vector3 vec);
 
 int
 is_vector3_equals(vector3 vec1, vector3 vec2);
@@ -31,3 +31,9 @@ to_radian(float degree);
 
 vector2
 world_to_screen(vector3 player_pos, vector3 world_pos, vector2 rotation, float fov, int screen_width, int screen_height);
+
+/*
+ * Converts SourceEngine units to meters
+ */
+float
+units_to_meters(float units);

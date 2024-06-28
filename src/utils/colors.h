@@ -22,7 +22,11 @@ typedef union {
 
 
 void
-set_foreground_color(struct xcb_connection_t *connection, xcb_gcontext_t gc, color color);
+set_foreground_color(struct xcb_connection_t *connection,
+                     xcb_gcontext_t          gc,
+                     color color);
 
 void
-set_background_color(struct xcb_connection_t *connection, xcb_gcontext_t gc, color color);
+set_background_color(struct xcb_connection_t *connection,
+                     xcb_gcontext_t gc,
+                     color color);

@@ -4,7 +4,6 @@
 # MIT License
 #
 
-
 CC=cc
 CFLAGS=-std=gnu18 -O2 -Wall -Werror -m32
 LDFLAGS=-lxcb -lxcb-xfixes -lxcb-dbe -lxcb-shape -lm

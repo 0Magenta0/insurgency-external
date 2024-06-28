@@ -7,12 +7,11 @@
 #include "math.h"
 
 #include <math.h>
-#include <stdio.h>
 
 int
-is_zero_pos(vector3 pos)
+is_vector3_zero(vector3 vec)
 {
-  return pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0;
+  return vec.x == 0.0 && vec.y == 0.0 && vec.z == 0.0;
 }
 
 int
@@ -35,49 +34,69 @@ to_radian(float degree)
 
 
 vector2
-world_to_screen(vector3 camera_position, vector3 world_position, vector2 camera_rotation, float fov, int screen_width, int screen_height)
+world_to_screen(vector3 camera_position,
+                vector3 world_position,
+                vector2 camera_rotation,
+                float fov,
+                int screen_width,
+                int screen_height)
 {
+  float   rad_pitch;
+  float   rad_yaw;
+  float   sin_pitch;
+  float   con_pitch;
+  float   sin_yaw;
+  float   cos_yaw;
+  float   temp_x;
+  float   temp_y;
+  float   temp_z;
+  float   multi;
   vector2 screen_pos; 
+  vector3 delta_vector;
+
   camera_rotation.x = -camera_rotation.x;
 
-  vector3 v_delta;
-  v_delta.x = world_position.x - camera_position.x;
-  v_delta.y = world_position.y - camera_position.y;
-  v_delta.z = world_position.z - camera_position.z;
+  delta_vector.x = world_position.x - camera_position.x;
+  delta_vector.y = world_position.y - camera_position.y;
+  delta_vector.z = world_position.z - camera_position.z;
 
-  float rad_pitch = camera_rotation.x * M_PI / 180.0f;
-  float rad_yaw = camera_rotation.y * M_PI / 180.0f;
+  rad_pitch = to_radian(camera_rotation.x);
+  rad_yaw   = to_radian(camera_rotation.y);
 
-  float sp = sinf(rad_pitch);
-  float cp = cosf(rad_pitch);
-  float sy = sinf(rad_yaw);
-  float cy = cosf(rad_yaw);
+  sin_pitch = sinf(rad_pitch);
+  con_pitch = cosf(rad_pitch);
+  sin_yaw   = sinf(rad_yaw);
+  cos_yaw   = cosf(rad_yaw);
 
-  float temp_x = v_delta.x;
-  float temp_z = v_delta.z;
+  temp_x = delta_vector.x;
+  temp_z = delta_vector.z;
+  temp_y = delta_vector.y;
 
-  v_delta.x = temp_x * cy - temp_z * sy;
-  v_delta.z = temp_x * sy + temp_z * cy;
+  delta_vector.x = temp_x * cos_yaw - temp_z * sin_yaw;
+  delta_vector.z = temp_x * sin_yaw + temp_z * cos_yaw;
 
-  temp_x = v_delta.x;
-  temp_z = v_delta.z;
+  temp_x = delta_vector.x;
+  temp_z = delta_vector.z;
 
-  float temp_y = v_delta.y;
-  v_delta.y = temp_y * cp - temp_z * sp;
-  v_delta.z = temp_y * sp + temp_z * cp;
-  temp_z = v_delta.z;
+  delta_vector.y = temp_y * con_pitch - temp_z * sin_pitch;
+  delta_vector.z = temp_y * sin_pitch + temp_z * con_pitch;
 
-  if (v_delta.z < 1.0f) {
-      v_delta.z = 1.0f;
+  if (delta_vector.z < 1.0f) {
+      delta_vector.z = 1.0f;
   }
 
-  float multi = (screen_width / 2.0f) / (tanf(fov * 0.00872665f) * v_delta.z);
+  multi = (screen_width / 2.0f) / (tanf(fov * (M_PI / 360)) * delta_vector.z);
 
-  v_delta.x = -v_delta.x;
+  delta_vector.x = -delta_vector.x;
 
-  screen_pos.x = screen_width / 2.0f + v_delta.x * multi;
-  screen_pos.y = screen_height / 2.0f - v_delta.y * multi;
+  screen_pos.x = screen_width / 2.0f + delta_vector.x * multi;
+  screen_pos.y = screen_height / 2.0f - delta_vector.y * multi;
 
   return screen_pos;
 }
 
+float
+units_to_meters(float units)
+{
+  return units * 0.0254;
+}

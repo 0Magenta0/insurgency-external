@@ -15,7 +15,7 @@ memory_read(pid_t pid, void *addr, void *buf, size_t buf_len)
 {
   struct iovec local[1];
   struct iovec remote[1];
-  ssize_t read;
+  ssize_t      read;
 
   local[0].iov_base = buf;
   local[0].iov_len = buf_len;
@@ -33,7 +33,7 @@ memory_write(pid_t pid, void *addr, void *buf, size_t buf_len)
 {
   struct iovec local[1];
   struct iovec remote[1];
-  ssize_t read;
+  ssize_t      read;
 
   local[0].iov_base = buf;
   local[0].iov_len = buf_len;

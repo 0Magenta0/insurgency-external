@@ -49,6 +49,8 @@ clear_screen(void);
 int
 init_overlay(void)
 {
+  xcb_colormap_t colormap;
+
   if ((connection = xcb_connect(NULL, NULL)) == NULL) {
     return -1;
   }
@@ -58,7 +60,7 @@ init_overlay(void)
     return -1;
   }
 
-  xcb_colormap_t colormap = xcb_generate_id(connection);
+  colormap = xcb_generate_id(connection);
   const uint32_t mask_values[] = {
     0x00000000,
     0,
@@ -66,17 +68,17 @@ init_overlay(void)
     1,
     1,
     1,
-    XCB_EVENT_MASK_STRUCTURE_NOTIFY |
-      XCB_EVENT_MASK_EXPOSURE |
+    XCB_EVENT_MASK_STRUCTURE_NOTIFY  |
+      XCB_EVENT_MASK_EXPOSURE        |
       XCB_EVENT_MASK_PROPERTY_CHANGE |
-      XCB_EVENT_MASK_ENTER_WINDOW |
-      XCB_EVENT_MASK_LEAVE_WINDOW |
-      XCB_EVENT_MASK_KEY_PRESS |
-      XCB_EVENT_MASK_KEY_RELEASE |
+      XCB_EVENT_MASK_ENTER_WINDOW    |
+      XCB_EVENT_MASK_LEAVE_WINDOW    |
+      XCB_EVENT_MASK_KEY_PRESS       |
+      XCB_EVENT_MASK_KEY_RELEASE     |
       XCB_EVENT_MASK_KEYMAP_STATE,
-    XCB_EVENT_MASK_KEY_PRESS |
-      XCB_EVENT_MASK_KEY_RELEASE |
-      XCB_EVENT_MASK_BUTTON_PRESS |
+    XCB_EVENT_MASK_KEY_PRESS        |
+      XCB_EVENT_MASK_KEY_RELEASE    |
+      XCB_EVENT_MASK_BUTTON_PRESS   |
       XCB_EVENT_MASK_BUTTON_RELEASE |
       XCB_EVENT_MASK_POINTER_MOTION |
       XCB_EVENT_MASK_BUTTON_MOTION,
@@ -88,7 +90,11 @@ init_overlay(void)
     return -1;
   }
 
-  xcb_create_colormap(connection, XCB_COLORMAP_ALLOC_NONE, colormap, screen->root, visual);
+  xcb_create_colormap(connection,
+                      XCB_COLORMAP_ALLOC_NONE,
+                      colormap,
+                      screen->root,
+                      visual);
 
   window = xcb_generate_id(connection);
   xcb_create_window(connection,
@@ -105,12 +111,31 @@ init_overlay(void)
                     mask_values);
 
 
-  xcb_shape_mask(connection, XCB_SHAPE_SO_SET, XCB_SHAPE_SK_BOUNDING, window, 0, 0, 0);
-  xcb_shape_rectangles(connection, XCB_SHAPE_SO_SET, XCB_SHAPE_SK_INPUT, XCB_CLIP_ORDERING_UNSORTED, window, 0, 0, 0, NULL);
+  xcb_shape_mask(connection,
+                 XCB_SHAPE_SO_SET,
+                 XCB_SHAPE_SK_BOUNDING,
+                 window,
+                 0,
+                 0,
+                 0);
+  xcb_shape_rectangles(connection,
+                       XCB_SHAPE_SO_SET,
+                       XCB_SHAPE_SK_INPUT, 
+                       XCB_CLIP_ORDERING_UNSORTED,
+                       window,
+                       0,
+                       0,
+                       0,
+                       NULL);
 
   region = xcb_generate_id(connection);
   xcb_xfixes_create_region(connection, region, 0, NULL);
-  xcb_xfixes_set_window_shape_region(connection, window, XCB_SHAPE_SK_INPUT, 0, 0, region);
+  xcb_xfixes_set_window_shape_region(connection,
+                                     window,
+                                     XCB_SHAPE_SK_INPUT,
+                                     0,
+                                     0,
+                                     region);
   xcb_xfixes_destroy_region(connection, region);
 
   back_buffer = xcb_generate_id(connection);
@@ -171,8 +196,13 @@ visualid_by_depth(uint16_t depth)
 static void
 clear_screen(void)
 {
-  color color = { .c = 0x00000000 };
-  xcb_rectangle_t screen_rect = { 0, 0, screen->width_in_pixels, screen->height_in_pixels };
+  color           color = { .c = 0x00000000 };
+  xcb_rectangle_t screen_rect = {
+    0,
+    0,
+    screen->width_in_pixels, 
+    screen->height_in_pixels
+  };
 
   set_foreground_color(connection, gc, color);
   xcb_poly_fill_rectangle(connection, window, gc, 1, &screen_rect);

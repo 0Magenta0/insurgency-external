@@ -8,12 +8,17 @@
 
 #include "math.h"
 
-enum team {
+typedef enum {
   NONE      = 0,
   SPECTATOR = 1,
   SECURITY  = 2,
   INSURGENT = 3
-};
+} team;
+
+
+/*
+ * NOTICE: zero index refers to local player.
+ */
 
 char
 local_player_team(int index);
@@ -43,4 +48,4 @@ float
 local_player_pitch(int index);
 
 float
-player_fov(void);
+local_player_fov(void);

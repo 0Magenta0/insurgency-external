@@ -16,17 +16,16 @@
 #include "procfs.h"
 #include "hex.h"
 
+#define BUF_SIZE 28
+#define BUF_SIZE_2 1024
+
 pid_t
 pid_by_name(const char *name)
 {
+  char          buf[BUF_SIZE];
   DIR           *procfs_dir;
-  struct dirent *procfs_dirent;
-  char          buf[28];
   FILE          *f;
-
-  if (name == NULL) {
-    return -1;
-  }
+  struct dirent *procfs_dirent;
 
   if ((procfs_dir = opendir("/proc/")) == NULL) {
     return -1;
@@ -53,16 +52,16 @@ pid_by_name(const char *name)
 void *
 module_rw_base(const char *module_name, pid_t ins_pid)
 {
-  char buf[1024];
-  char *file_line;
-  size_t line_len;
-  size_t module_len = strlen(module_name);
-  size_t read;
+  char     buf[BUF_SIZE_2];
+  char     *file_line;
+  size_t   line_len;
+  size_t   module_len = strlen(module_name);
+  size_t   read;
   uint32_t base_addr = 0;
-  FILE *f;
+  FILE     *f;
 
   bzero(buf, sizeof(buf));
-  snprintf(buf, 1024, "/proc/%d/maps", ins_pid);
+  snprintf(buf, BUF_SIZE_2, "/proc/%d/maps", ins_pid);
   if ((f = fopen(buf, "r")) == NULL) {
     return NULL;
   }
