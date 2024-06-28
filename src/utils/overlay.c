@@ -160,6 +160,9 @@ draw_overlay_loop(void)
       draw_radar(connection, screen, window, gc);
       draw_hud(connection, screen, window, gc);
       draw_esp(connection, screen, window, gc);
+#ifdef UNSAFE
+      noflash();
+#endif
     }
 
     xcb_dbe_swap_buffers(connection, 0, NULL);

@@ -27,7 +27,7 @@ memory_read(pid_t pid, void *addr, void *buf, size_t buf_len)
   return read;
 }
 
-/*
+#ifdef UNSAFE
 ssize_t
 memory_write(pid_t pid, void *addr, void *buf, size_t buf_len)
 {
@@ -44,4 +44,4 @@ memory_write(pid_t pid, void *addr, void *buf, size_t buf_len)
 
   return read;
 }
-*/
+#endif

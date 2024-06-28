@@ -10,6 +10,10 @@ LDFLAGS=-lxcb -lxcb-xfixes -lxcb-dbe -lxcb-shape -lm
 SRC=$(shell find src/ -type f -iname '*.c')
 BINARY=overlay
 
+ifeq (1,$(UNSAFE))
+	CFLAGS += -DUNSAFE
+endif
+
 all: clean build
 
 clean:

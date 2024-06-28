@@ -34,6 +34,18 @@ o ESP
 o HUD
    - Player Health
 
+o NoFlash (Unsafe)
+
+
+UNSAFE FUNCTIONS
+----------------
+Some functions are marked as `Unsafe'. These are functions that
+may be visible by anti-cheat (Memory writes, etc). Use it at
+your own risk. To compile cheat with this functions use:
+```
+  make UNSAFE=1
+```
+
 
 KNOWN ISSUES
 ------------
