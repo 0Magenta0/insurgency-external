@@ -1,0 +1,43 @@
+
+                                  Insurgency
+                                External Cheat
+
+               https://github.com/0Magenta0/insurgency-external
+                           Copyright 0Magenta0 2024
+                              Licensed under MIT
+
+                       !!! EDUCATIONAL PURPOSES ONLY !!!
+              The developer is not responsible or liable for any
+      misuse or damage caused by this tool and the software in general. 
+
+
+
+INTRODUCTION
+------------
+This is very simple hack made just in few days. This hack is
+fully external and **currently** not detectable by anti-cheat.
+If you get banned it's not my fault.
+
+
+FUNCTIONS
+---------
+o Crosshair
+
+o Radar
+   - Player pitch
+   - Player floor range
+
+o ESP
+   - Distance
+   - Health
+
+o HUD
+   - Player Health
+
+
+KNOWN ISSUES
+------------
+o ESP doesn't work correctly in any scopes.
+o A Player's roll is assumed to be always zero.
+o Some ESP artifacts.
+o Non-existent players are still shown on ESP/Radar.
