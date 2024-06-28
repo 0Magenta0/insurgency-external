@@ -17,16 +17,16 @@ local_player_team(int index)
   char team;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_TEAM, &team, 1) > 0) {
-            return team;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_TEAM, &team, 1) > 0) {
+          return team;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_TEAM, &team, 1) > 0) {
@@ -47,16 +47,16 @@ local_player_health(int index)
   char health;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_HEALTH, &health, 1) > 0) {
-            return health;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_HEALTH, &health, 1) > 0) {
+          return health;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_HEALTH, &health, 1) > 0) {
@@ -76,16 +76,16 @@ local_player_dead_flag(int index)
   char dead_flag;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_DEAD_FLAG, &dead_flag, 1) > 0) {
-            return dead_flag;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_DEAD_FLAG, &dead_flag, 1) > 0) {
+          return dead_flag;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_DEAD_FLAG, &dead_flag, 1) > 0) {
@@ -105,16 +105,16 @@ local_player_pos_x(int index)
   float pos_x;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_X, &pos_x, 4) == 4) {
-            return pos_x;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_X, &pos_x, 4) == 4) {
+          return pos_x;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_X, &pos_x, 4) == 4) {
@@ -134,16 +134,16 @@ local_player_pos_y(int index)
   float pos_y;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_Y, &pos_y, 4) == 4) {
-            return pos_y;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_Y, &pos_y, 4) == 4) {
+          return pos_y;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_Y, &pos_y, 4) == 4) {
@@ -163,16 +163,16 @@ local_player_pos_z(int index)
   float pos_z;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_Z, &pos_z, 4) == 4) {
-            return pos_z;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_Z, &pos_z, 4) == 4) {
+          return pos_z;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_Z, &pos_z, 4) == 4) {
@@ -188,11 +188,11 @@ local_player_pos_z(int index)
 vector3
 local_player_pos(int index)
 {
-  void    *pointer  = client_base + OFFSET_CLIENT_BASE_1;
+  void    *pointer  = client_base + OFFSET_CLIENT_BASE_3;
   vector3 pos = { -1, -1, -1 };
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
           if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_X, &pos, 12) == 12) {
@@ -201,7 +201,7 @@ local_player_pos(int index)
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_X, &pos, 12) == 12) {
@@ -221,16 +221,16 @@ local_player_yaw(int index)
   float yaw;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_YAW, &yaw, 4) == 4) {
-            return yaw;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_YAW, &yaw, 4) == 4) {
+          return yaw;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_YAW, &yaw, 4) == 4) {
@@ -250,16 +250,16 @@ local_player_pitch(int index)
   float pitch;
 
   if (index == 0) {
-    pointer = client_base + OFFSET_CLIENT_BASE_2;
+    pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_PITCH, &pitch, 4) == 4) {
-            return pitch;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_PITCH, &pitch, 4) == 4) {
+          return pitch;
+        }
       }
     }
   } else {
-    pointer = client_base + OFFSET_CLIENT_BASE_1;
+    pointer = client_base + OFFSET_CLIENT_BASE_2;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + (0x14 + (0x10 * (index - 1))), &pointer, 4) == 4) {
         if (memory_read(ins_pid, pointer + OFFSET_PLAYER_PITCH, &pitch, 4) == 4) {
