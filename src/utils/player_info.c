@@ -188,16 +188,16 @@ local_player_pos_z(int index)
 vector3
 local_player_pos(int index)
 {
-  void    *pointer  = client_base + OFFSET_CLIENT_BASE_3;
+  void    *pointer;
   vector3 pos = { -1, -1, -1 };
 
   if (index == 0) {
     pointer = client_base + OFFSET_CLIENT_BASE_1;
     if (memory_read(ins_pid, pointer, &pointer, 4) == 4) {
       if (memory_read(ins_pid, pointer + 0x4, &pointer, 4) == 4) {
-          if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_X, &pos, 12) == 12) {
-            return pos;
-          }
+        if (memory_read(ins_pid, pointer + OFFSET_PLAYER_POS_X, &pos, 12) == 12) {
+          return pos;
+        }
       }
     }
   } else {
